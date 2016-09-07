@@ -176,10 +176,10 @@ function createTempGraph(panelID) {
 
 function updatePanel(panelID, data) {
     //update Keypresses
-    if (data['event']=="open_6") {
+    if (data['event']=="close_6") {
         buttonDown(panelID);
     }
-    if (data['event']=="close_6") {
+    if (data['event']=="open_6") {
         buttonUp(panelID);
     }
     var headerIcon = $('#heading-' + panelID);
