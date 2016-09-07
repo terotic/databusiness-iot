@@ -39,6 +39,7 @@ sprockets.append_path File.join(root, "bower_components")
 
 # Build-specific configuration
 configure :build do
+  activate :relative_assets
   # Minify CSS on build
   # activate :minify_css
 
