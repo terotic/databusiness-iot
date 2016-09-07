@@ -1,0 +1,254 @@
+@charset "utf-8";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "chartist-settings";
+@import "chartist/dist/scss/chartist.scss";
+
+$databusiness-purple: #66256D;
+$databusiness-purple-light: #9589C0;
+$databusiness-yellow: #F9BC11;
+$databusiness-blue:#C2E7FA;
+$databusiness-red: #E84858;
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+.jumbotron {
+  background-color: #66256D;
+  color: #ffffff;
+  text-align: center;
+}
+
+.display-branding {
+  max-width: 240px;
+}
+.grid-button, .grid-graph {
+  margin-bottom: 2em;
+}
+
+.square-area {
+  position: relative;
+  width: 100%;
+}
+
+.square-area:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.iot-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background-color: #9589C0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-transition: background-color 500ms ease;
+  -moz-transition: background-color 500ms ease;
+  -o-transition: background-color 500ms ease;
+  transition: background-color 500ms ease;
+}
+
+.iot-button h2 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.iot-button.pressed {
+  border: 4px solid #eee;
+  background-color: #eee;
+}
+
+.gif-bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.iot-button.pressed h2, .iot-button.pressed h3 {
+  display: none;
+}
+
+.button-count {
+  text-align: center;
+  font-size: 36px;
+}
+
+.iot-graph {
+  position: relative;
+  border-radius: 0;
+  background-color: $databusiness-blue;
+  background-size: cover;
+  background-position: center;
+}
+
+.sensor-panel{
+  background-color: $databusiness-blue;
+}
+
+.panel-title {
+  font-size: 1.5em;
+  line-height: 1.7;
+}
+
+.sensor-icon {
+  height: 1.5em;
+  float: left;
+  margin-right: .5em;
+}
+
+.press-icon {
+  float: right;
+  height: 2em;
+  margin: 3px;
+  path {
+    fill: #ffffff;
+  }
+}
+
+.is-down {
+  span {
+    color: $databusiness-red;
+  }
+  .press-icon path {
+    fill: $databusiness-red;
+  }
+}
+
+@keyframes flash {
+  0% {
+    fill: #E84858;
+  }
+  50% {
+    fill: #45db8e;
+  }
+  100% {
+    fill: #E84858;
+  }
+}
+
+.sensor-icon path {
+  fill: #ffffff;
+  animation-name: flash;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+}
+
+.panel-heading {
+  background: $databusiness-purple;
+  color: #ffffff;
+}
+.panel-heading.is-updated .sensor-icon path {
+  animation-name: flash;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+}
+
+.push-counter-wrapper {
+  background-color: $databusiness-blue;
+  width: 100%;
+  height: 2.5em;
+  position: relative;
+  margin-right: 3em;
+}
+
+.push-graph {
+  position: absolute;
+  right: 0;
+  height: 2.5em;
+  background: $databusiness-purple-light;
+}
+
+.push-counter {
+  position: absolute;
+  right: 0;
+  line-height: 2.5em;
+  padding-right: 6px;
+  color: #ffffff;
+  span {
+    font-size: 1.666em;
+    font-weight: bold;
+  }
+}
+
+.humidity-wrapper {
+  color: $databusiness-purple;
+  h1 {
+    font-weight: bold;
+    small {
+     color: $databusiness-purple-light;
+    }
+  } 
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 120px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 72px;
+  padding: 12px;
+  background-color: #333;
+}
+
+.footer img {
+  height: 48px;
+}
+
+
+
+
+/**** GRAPHS *****/
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #555;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill: #555;
+}
+
+.line {
+  fill: none;
+  stroke: $databusiness-purple;
+  stroke-width: 1.5px;
+}
+
+.responsive-graph {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.tick text {
+  font-size: 10px;
+}
+
+
+#ws {
+  height: 140px;
+  padding: 1em;
+  background: #eee;
+  overflow: scroll;
+}

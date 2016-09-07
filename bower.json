@@ -1,0 +1,22 @@
+{
+  "name": "databusiness-iot",
+  "authors": [
+    "Tero Tikkanen <tero.tikkanen@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chartist": "^0.9.8",
+    "jquery": "^3.1.0",
+    "moment": "^2.14.1"
+  }
+}
