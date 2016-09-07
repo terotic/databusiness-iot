@@ -18899,6 +18899,14 @@ function onMessageArrived(message) {
             countClicks(data['chipid']);
         }
     };
+    if (topic == 'nodemcu/event') {
+        var data = JSON.parse(payload);
+        var keys = Object.keys(data);
+        var panelid = '#heading-' + data['chipid'];
+        if ($(panelid).length) {
+            updatePresses(data['chipid'], data);
+        }
+    }
 };
 
 // Read clicks history from the log
@@ -18991,14 +18999,20 @@ function createTempGraph(panelID) {
     });
 }
 
-function updatePanel(panelID, data) {
-    //update Keypresses
+function updatePresses(panelID, data) {
+    console.log("event: " +data['event']);
     if (data['event']=="close_6") {
+        console.log("Panel ID #" + panelID + " button pressed");
         buttonDown(panelID);
     }
     if (data['event']=="open_6") {
+        console.log("Panel ID #" + panelID + " button released");
         buttonUp(panelID);
     }
+}
+
+function updatePanel(panelID, data) {
+    //update Keypresses
     var headerIcon = $('#heading-' + panelID);
     headerIcon.toggleClass('is-updated');
     //update Humidity
