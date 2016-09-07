@@ -5952,7 +5952,7 @@ button.close {
 
 .ct-line {
   fill: none;
-  stroke-width: 4px; }
+  stroke-width: 3px; }
 
 .ct-area {
   stroke: none;
@@ -6466,18 +6466,17 @@ button.close {
   background-color: #C2E7FA; }
 
 .panel-title {
-  font-size: 1.5em;
-  line-height: 1.7; }
+  font-size: 1em;
+  line-height: 25px; }
 
 .sensor-icon {
-  height: 1.5em;
+  height: 24px;
   float: left;
   margin-right: .5em; }
 
 .press-icon {
   float: right;
-  height: 2em;
-  margin: 3px; }
+  height: 24px; }
   .press-icon path {
     fill: #ffffff; }
 
@@ -6511,24 +6510,24 @@ button.close {
 .push-counter-wrapper {
   background-color: #C2E7FA;
   width: 100%;
-  height: 2.5em;
+  height: 25px;
   position: relative;
   margin-right: 3em; }
 
 .push-graph {
   position: absolute;
   right: 0;
-  height: 2.5em;
+  height: 25px;
   background: #9589C0; }
 
 .push-counter {
   position: absolute;
   right: 0;
-  line-height: 2.5em;
+  line-height: 25px;
   padding-right: 6px;
   color: #ffffff; }
   .push-counter span {
-    font-size: 1.666em;
+    font-size: 1em;
     font-weight: bold; }
 
 .humidity-wrapper {

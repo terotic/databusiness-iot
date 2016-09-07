@@ -18928,6 +18928,14 @@ function countClicks(panelID) {
     });
 }
 
+function getMaxClicks() {
+    var maxim = 0;
+    for (var n in pushes) {
+        if (pushes[n]>maxim) maxim=pushes[n];
+    }
+    return maxim;
+}
+
 function createTempGraph(panelID) {
     chartsData[panelID] = {
         series: [{
@@ -18975,7 +18983,16 @@ function createTempGraph(panelID) {
         var graphContainer = '#graph-' + panelID;
         $(graphContainer).html("");
         //chartsData[panelID] = newChartData;
-        charts[panelID] = new Chartist.Line(graphContainer, chartsData[panelID], {
+        charts[panelID] = new Chartist.Line(graphContainer, chartsData[panelID], getChartOptions());
+    }).fail(function (jqxhr, textStatus, error) {
+        charts[panelID] = false;
+        var err = textStatus + ", " + error;
+        console.log("Request Failed: " + err + " chart:" + panelID + " = " + charts[panelID]);
+    });
+}
+
+function getChartOptions() {
+   var chartOptions = {
             fullWidth: true,
             showPoint: false,
             chartPadding: {
@@ -18985,22 +19002,19 @@ function createTempGraph(panelID) {
                 type: Chartist.FixedScaleAxis,
                 divisor: 6,
                 labelInterpolationFnc: function (value) {
-                    return moment(value).format('hh:mm:ss');
+                    return moment(value).format('HH:mm:ss');
                 }
             },
             axisY: {
-                onlyInteger: true
+                onlyInteger: true,
+                high: 40,
+                low: 10
             }
-        });
-    }).fail(function (jqxhr, textStatus, error) {
-        charts[panelID] = false;
-        var err = textStatus + ", " + error;
-        console.log("Request Failed: " + err + " chart:" + panelID + " = " + charts[panelID]);
-    });
+    };
+    return chartOptions;
 }
 
 function updatePresses(panelID, data) {
-    console.log("event: " +data['event']);
     if (data['event']=="close_6") {
         console.log("Panel ID #" + panelID + " button pressed");
         buttonDown(panelID);
@@ -19051,12 +19065,10 @@ function updateGraph(panelID, datas) {
 }
 
 function buttonUp(panelID) {
-    var pushContainer = $('#pushes-' + panelID + ' .push-count');
-    var pushGraph = $('#heading-' + panelID + ' .push-graph');
-    var pushWidth = pushes[panelID] + '%';
     pushes[panelID]++;
-    pushContainer.html(pushes[panelID]);
-    pushGraph.width(pushWidth);
+    for (var n in charts) {
+      updatePushGraph(n);
+    }
     $('#pushes-'+panelID).removeClass("is-down");
 }
 
@@ -19064,9 +19076,21 @@ function buttonDown(panelID) {
     $('#pushes-'+panelID).addClass("is-down");
 }
 
+function updatePushGraph(panelID) {
+    // calculate the viz widths relative to largest push amount
+    var pushGraphMax = Math.ceil(getMaxClicks()/100)*100;
+    var newGraphWidth = (pushes[panelID]/pushGraphMax)*100;
+    // update graph width
+    var pushGraph = $('#heading-' + panelID + ' .push-graph');
+    pushGraph.width(newGraphWidth+"%");
+    // update number
+    var pushContainer = $('#pushes-' + panelID + ' .push-count');
+    pushContainer.html(pushes[panelID]);
+}
+
 function newPanel(panelID, humidity) {
     // Panel header
-    var theNewPanel = '<div class="col-xs-12"><div class="panel"><div class="panel-heading clearfix" role="tab" id="heading-';
+    var theNewPanel = '<div class="col-sm-6"><div class="panel"><div class="panel-heading clearfix" role="tab" id="heading-';
     theNewPanel += panelID;
     theNewPanel += '"><div class="row"><div class="col-sm-3"><h5 class="panel-title">';
     theNewPanel += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-';
@@ -19087,11 +19111,11 @@ function newPanel(panelID, humidity) {
     theNewPanel += '" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-';
     theNewPanel += panelID;
     theNewPanel += '"><div class="panel-body sensor-panel">';
-    theNewPanel += '<div class="col-sm-10"><h5>Temperature</h5>';
+    theNewPanel += '<div class="col-sm-10">';
     theNewPanel += '<div class="iot-graph ct-chart ct-major-twelfth" id="graph-';
     theNewPanel += panelID;
     theNewPanel += '"><div class="well">Fetching temperature data</div></div></div>';
-    theNewPanel += '<div class="col-sm-2"><h5>Humidity</h5><div class="humidity-wrapper"><h1><span id="humidity-';
+    theNewPanel += '<div class="col-sm-2"><div class="humidity-wrapper"><h1><span id="humidity-';
     theNewPanel += panelID;
     theNewPanel += '">';
     theNewPanel += humidity;
