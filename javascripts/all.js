@@ -19006,9 +19006,7 @@ function getChartOptions() {
                 }
             },
             axisY: {
-                onlyInteger: true,
-                high: 40,
-                low: 10
+                referenceValue: 20
             }
     };
     return chartOptions;
@@ -19090,7 +19088,7 @@ function updatePushGraph(panelID) {
 
 function newPanel(panelID, humidity) {
     // Panel header
-    var theNewPanel = '<div class="col-sm-6"><div class="panel"><div class="panel-heading clearfix" role="tab" id="heading-';
+    var theNewPanel = '<div class="col-md-6"><div class="panel"><div class="panel-heading clearfix" role="tab" id="heading-';
     theNewPanel += panelID;
     theNewPanel += '"><div class="row"><div class="col-sm-3"><h5 class="panel-title">';
     theNewPanel += '<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-';
