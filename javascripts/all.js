@@ -19006,7 +19006,8 @@ function getChartOptions() {
                 }
             },
             axisY: {
-                referenceValue: 20
+                referenceValue: 20,
+                onlyInteger: true
             }
     };
     return chartOptions;
@@ -19067,11 +19068,11 @@ function buttonUp(panelID) {
     for (var n in charts) {
       updatePushGraph(n);
     }
-    $('#pushes-'+panelID).removeClass("is-down");
+    $('#heading-'+panelID).removeClass("is-down");
 }
 
 function buttonDown(panelID) {
-    $('#pushes-'+panelID).addClass("is-down");
+    $('#heading-'+panelID).addClass("is-down");
 }
 
 function updatePushGraph(panelID) {
@@ -19126,12 +19127,16 @@ $(document).ready(function () {
     MQTTconnect();
 });
 
-$("body").keydown(function(){
-    buttonDown(testPanelID);
+$("body").keydown(function(evt){
+    if (evt.keyCode == 88) {
+        buttonDown(testPanelID);
+    }
 });
 
-$("body").keyup(function(){
-    buttonUp(testPanelID);
+$("body").keyup(function(evt){
+    if (evt.keyCode == 88) {
+        buttonUp(testPanelID);
+    }
 });
 
 

@@ -5809,7 +5809,7 @@ button.close {
 .ct-label {
   fill: rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 0.4);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   line-height: 1; }
 
 .ct-chart-line .ct-label,
@@ -6402,27 +6402,26 @@ button.close {
    Author's custom styles
    ========================================================================== */
 .site-header {
-  background-color: #66256D;
-  color: #ffffff;
+  background-color: #eeeeee;
+  color: #66256D;
   margin-bottom: 2em; }
 
 .site-headline {
-  text-align: right;
-  font-size: 24px;
+  font-size: 32px;
   margin-top: 1em; }
 
 .branding-logo {
   display: block;
   margin: 2em 0;
-  height: 3em; }
+  height: 2.5em; }
 
 .sponsors {
-  margin-top: 4em;
-  margin-bottom: 4em; }
+  margin-top: 2em;
+  margin-bottom: 1em; }
 
 .sponsor-logo {
   display: block;
-  max-width: 8em;
+  max-width: 6em;
   margin-bottom: 2em;
   margin-right: auto;
   margin-left: auto; }
@@ -6501,11 +6500,6 @@ button.close {
   .press-icon path {
     fill: #ffffff; }
 
-.is-down span {
-  color: #E84858; }
-.is-down .press-icon path {
-  fill: #E84858; }
-
 @keyframes flash {
   0% {
     fill: #E84858; }
@@ -6521,7 +6515,11 @@ button.close {
 
 .panel-heading {
   background: #66256D;
-  color: #ffffff; }
+  color: #ffffff;
+  transition: all 0.5s ease; }
+
+.panel-heading.is-down {
+  background-color: #E84858; }
 
 .panel-heading.is-updated .sensor-icon path {
   animation-name: flash;
@@ -6548,7 +6546,7 @@ button.close {
   padding-right: 6px;
   color: #ffffff; }
   .push-counter span {
-    font-size: 1em;
+    font-size: 1.25em;
     font-weight: bold; }
 
 .humidity-wrapper {
@@ -6564,7 +6562,8 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 120px; }
+  margin-bottom: 120px;
+  background-color: #fff; }
 
 .footer {
   position: absolute;
