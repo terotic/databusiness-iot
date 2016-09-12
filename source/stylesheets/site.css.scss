@@ -18,31 +18,31 @@ $databusiness-red: #E84858;
 
 
 .site-header {
-  background-color: #66256D;
-  color: #ffffff;
+  background-color: $gray-lighter;
+  color: $databusiness-purple;
   margin-bottom: 2em;
+  //border-bottom: 3px solid $databusiness-purple;
 }
 
 .site-headline {
-  text-align: right;
-  font-size: 24px;
+  font-size: 32px;
   margin-top: 1em;
 }
 
 .branding-logo {
   display: block;
   margin: 2em 0;
-  height: 3em;
+  height: 2.5em;
 }
 
 .sponsors {
-  margin-top: 4em;
-  margin-bottom: 4em;
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
 .sponsor-logo {
   display: block;
-  max-width: 8em;
+  max-width: 6em;
   margin-bottom: 2em;
   margin-right: auto;
   margin-left: auto;
@@ -138,15 +138,6 @@ $databusiness-red: #E84858;
   }
 }
 
-.is-down {
-  span {
-    color: $databusiness-red;
-  }
-  .press-icon path {
-    fill: $databusiness-red;
-  }
-}
-
 @keyframes flash {
   0% {
     fill: #E84858;
@@ -169,7 +160,23 @@ $databusiness-red: #E84858;
 .panel-heading {
   background: $databusiness-purple;
   color: #ffffff;
+  transition: all 0.5s ease;
 }
+
+.panel-heading.is-down {
+  background-color: $databusiness-red;
+  .push-counter {
+    //box-shadow: 0 0 6px 6px $databusiness-red;
+  }
+  .push-graph {
+    //background-color: $databusiness-red;
+  }
+  .push-counter-wrapper {
+    //box-shadow:  0 0 0 7px $databusiness-red;
+    //background-color: darken($databusiness-blue, 10%);
+  }
+}
+
 .panel-heading.is-updated .sensor-icon path {
   animation-name: flash;
   animation-duration: .5s;
@@ -198,7 +205,7 @@ $databusiness-red: #E84858;
   padding-right: 6px;
   color: #ffffff;
   span {
-    font-size: 1em;
+    font-size: 1.25em;
     font-weight: bold;
   }
 }
@@ -221,6 +228,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 120px;
+  background-color: #fff;
 }
 
 .footer {
